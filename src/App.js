@@ -8,6 +8,8 @@ import Products from "./Pages/Products";
 import AddPet from "./Pages/AddPet";
 import SignUp from "./Pages/SignUp";
 import PetDetails from "./Pages/Petdetails";
+import MpesaPayment from "./Pages/Mpesa";
+import Chatbot from "./Pages/Chatbot";
 import Cart from "./Pages/Cart";
 import SignIn from "./Pages/SignIn";
 
@@ -62,6 +64,7 @@ function App() {
             <Shop pets={pets} addToCart={addToCart} />
           }
         />
+        
 
         <Route path="/products" element={<Products addToCart={addToCart} />} />
 
@@ -76,6 +79,7 @@ function App() {
             <Cart cart={cart} removeFromCart={removeFromCart} />
           }
         />
+        <Route path="/MpesaPayment" element={<MpesaPayment/>} />
 
         {/* 🐾 ADMIN DASHBOARD (FIXED) */}
         <Route
