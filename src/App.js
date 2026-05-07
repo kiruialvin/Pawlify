@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 import Navbar from "./Components/Navbar";
+import Chatbot from "./Components/Chatbot";
+import Footer from "./Components/Footer"; // ✅ KEEP THIS
+
 import Home from "./Pages/Home";
 import Shop from "./Pages/Shop";
 import Products from "./Pages/Products";
@@ -9,11 +12,8 @@ import AddPet from "./Pages/AddPet";
 import SignUp from "./Pages/SignUp";
 import PetDetails from "./Pages/Petdetails";
 import MpesaPayment from "./Pages/Mpesa";
-import Chatbot from "./Pages/Chatbot";
 import Cart from "./Pages/Cart";
 import SignIn from "./Pages/SignIn";
-
-// ✅ FIX 1: IMPORT ADMIN DASHBOARD (THIS WAS MISSING)
 import AdminDashboard from "./Pages/AdminDashboard";
 
 function App() {
@@ -49,39 +49,42 @@ function App() {
   return (
     <Router>
 
+      {/* ✅ NAVBAR */}
       <Navbar
         cartCount={cart.length}
         isAdmin={isAdmin}
       />
 
+      {/* ✅ ROUTES */}
       <Routes>
 
         <Route path="/" element={<Home />} />
 
         <Route
           path="/shop"
-          element={
-            <Shop pets={pets} addToCart={addToCart} />
-          }
+          element={<Shop pets={pets} addToCart={addToCart} />}
         />
-        
-
-        <Route path="/products" element={<Products addToCart={addToCart} />} />
 
         <Route
-  path="/pet/:id"
-  element={<PetDetails addToCart={addToCart} pets={pets} />}
-/>
+          path="/products"
+          element={<Products addToCart={addToCart} />}
+        />
+
+        <Route
+          path="/pet/:id"
+          element={<PetDetails addToCart={addToCart} pets={pets} />}
+        />
 
         <Route
           path="/cart"
-          element={
-            <Cart cart={cart} removeFromCart={removeFromCart} />
-          }
+          element={<Cart cart={cart} removeFromCart={removeFromCart} />}
         />
-        <Route path="/MpesaPayment" element={<MpesaPayment/>} />
 
-        {/* 🐾 ADMIN DASHBOARD (FIXED) */}
+        <Route
+          path="/MpesaPayment"
+          element={<MpesaPayment />}
+        />
+
         <Route
           path="/admin"
           element={
@@ -108,6 +111,12 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
 
       </Routes>
+
+      {/* ✅ GLOBAL CHATBOT (FLOATING) */}
+      <Chatbot />
+
+      {/* ✅ GLOBAL FOOTER (NOW ADDED) */}
+      <Footer />
 
     </Router>
   );

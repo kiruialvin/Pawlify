@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.footer-icon {
+  transition: all 0.4s ease;
+}
+
+.footer-icon:hover {
+  transform: translateY(-8px) rotate(12deg) scale(1.25);
+  box-shadow: 0 0 20px #ff6b81, 0 0 40px #ff6b81;
+  background: #ff6b81 !important;
+  color: white;
+}

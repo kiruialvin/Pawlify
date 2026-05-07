@@ -121,67 +121,140 @@ const SignIn = () => {
   }
 
   return (
-    <div style={page}>
+  <div
+    style={{
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      background: "linear-gradient(135deg, #ff6b81, #ff8e53)",
+      padding: "20px",
+    }}
+  >
 
-      <div style={card}>
+    <div
+      style={{
+        width: "100%",
+        maxWidth: "420px",
+        background: "#fff",
+        padding: "30px",
+        borderRadius: "20px",
+        boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
+        textAlign: "center",
+      }}
+    >
 
-        <h2 style={{ textAlign: "center" }}>🔐 Sign In</h2>
+      <h2 style={{ marginBottom: "20px", color: "#ff6b81" }}>
+        🔐 Sign In
+      </h2>
 
-        <form onSubmit={submit}>
+      <form onSubmit={submit}>
 
-          <p style={{ color: "orange", textAlign: "center" }}>{loading}</p>
-          <p style={{ color: "green", textAlign: "center" }}>{success}</p>
-          <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+        <p style={{ color: "orange", textAlign: "center" }}>{loading}</p>
+        <p style={{ color: "green", textAlign: "center" }}>{success}</p>
+        <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+
+        {/* EMAIL */}
+        <input
+          style={{
+            width: "100%",
+            padding: "12px",
+            margin: "10px 0",
+            borderRadius: "10px",
+            border: "1px solid #ddd",
+            outline: "none",
+            fontSize: "14px",
+          }}
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        {/* PASSWORD WRAPPER */}
+        <div style={{ position: "relative" }}>
 
           <input
-            style={input}
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            style={{
+              width: "100%",
+              padding: "12px",
+              margin: "10px 0",
+              borderRadius: "10px",
+              border: "1px solid #ddd",
+              outline: "none",
+              fontSize: "14px",
+            }}
+            type={showPassword ? "text" : "password"}
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value)
+              setStrength(checkStrength(e.target.value))
+            }}
             required
           />
 
-          {/* PASSWORD */}
-          <div style={passwordBox}>
+          <span
+            style={{
+              position: "absolute",
+              right: "12px",
+              top: "20px",
+              cursor: "pointer",
+              fontSize: "18px",
+            }}
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </span>
 
-            <input
-              style={input}
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-                setStrength(checkStrength(e.target.value))
-              }}
-              required
-            />
+        </div>
 
-            <span
-              style={eye}
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "🙈" : "👁️"}
-            </span>
+        {/* PASSWORD STRENGTH */}
+        <p style={{ fontSize: "13px", color: "#555", marginBottom: "10px" }}>
+          {strength}
+        </p>
 
-          </div>
+        {/* BUTTON */}
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            padding: "12px",
+            background: "#ff6b81",
+            color: "white",
+            border: "none",
+            borderRadius: "10px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            cursor: "pointer",
+            marginTop: "10px",
+          }}
+        >
+          Sign In
+        </button>
 
-          <p style={strengthStyle}>{strength}</p>
+        {/* LINK */}
+        <p style={{ marginTop: "15px" }}>
+          Don't have an account?{" "}
+          <Link
+            to="/signup"
+            style={{
+              color: "#ff6b81",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            Sign Up
+          </Link>
+        </p>
 
-          <button style={button}>
-            Sign In
-          </button>
-
-          <p style={{ textAlign: "center", marginTop: "10px" }}>
-            Don't have an account? <Link to="/signup">Sign Up</Link>
-          </p>
-
-        </form>
-
-      </div>
+      </form>
 
     </div>
-  )
+
+  </div>
+);
 }
 
 export default SignIn
